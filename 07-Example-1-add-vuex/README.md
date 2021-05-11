@@ -55,4 +55,33 @@ npm add vuex --save
 "vuex": "^3.6.2"
 ```
 
+## Register the store inside the main.js ##
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import Store from './store'
+
+Vue.config.productionTip = false
+
+new Vue({
+  Store,
+  render: h => h(App),
+}).$mount('#app')
+```
+
+## Create store using vstore vuetur tool ##
+```js
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+    state: {
+        key: value
+    }
+});
+```
+
+
 
