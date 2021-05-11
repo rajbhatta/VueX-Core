@@ -57,20 +57,26 @@ npm add vuex --save
 
 ## Register the store inside the main.js ##
 ```js
+
+main.js
+
 import Vue from 'vue'
 import App from './App.vue'
-import Store from './store'
+import store from './store'
 
 Vue.config.productionTip = false
 
 new Vue({
-  Store,
+  store,
   render: h => h(App),
 }).$mount('#app')
 ```
 
 ## Create store using vstore vuetur tool ##
 ```js
+
+store.js
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -82,6 +88,46 @@ export const store = new Vuex.Store({
     }
 });
 ```
+
+## Register store inside main.js ##
+```js
+
+main.js
+
+import Vue from 'vue'
+import App from './App.vue'
+import store from './store/store'
+
+Vue.config.productionTip = false
+
+new Vue({
+  store,
+  render: h => h(App),
+}).$mount('#app')
+```
+
+### Modify store to hold the data that we need to migrate from App.vue ###
+```js
+
+store.js
+
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+    state: {
+        products: [
+            {name:'Apple', qtn:30},
+            {name:'Ball', qtn:30},
+             {name:'Cat', qtn:30},
+             {name:'Dog', qtn:30}
+             ]
+    }
+});
+```
+
 
 
 

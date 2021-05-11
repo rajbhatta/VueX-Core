@@ -5,6 +5,11 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        key: value
+        products: [
+            {name:'Apple', qtn:30},
+            {name:'Ball', qtn:30},
+             {name:'Cat', qtn:30},
+             {name:'Dog', qtn:30}
+             ]
     }
 });

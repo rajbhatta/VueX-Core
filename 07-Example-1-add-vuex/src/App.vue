@@ -13,12 +13,7 @@ export default {
   name: 'App',
   data() {
     return {
-      products: [
-        {name:'Apple', qtn:30},
-        {name:'Ball', qtn:30},
-         {name:'Cat', qtn:30},
-         {name:'Dog', qtn:30}
-         ]
+      
     }
   },
   components: {
