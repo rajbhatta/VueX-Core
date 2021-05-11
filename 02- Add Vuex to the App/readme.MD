@@ -12,3 +12,16 @@
 
 # 5. Details about Store.Js? #
 <img src="img/img5.PNG">
+
+# 6. What will happen after adding Vux? #
+- Change in package.json
+<img src="img/img6.PNG">
+
+- change in main.js
+<img src="img/img7.PNG">
+
+- change in store.js
+<img src="img/img8.PNG">
+
+-Refactoring store.js
+<img src="img/img9.PNG">
