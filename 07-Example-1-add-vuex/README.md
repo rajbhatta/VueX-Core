@@ -55,23 +55,6 @@ npm add vuex --save
 "vuex": "^3.6.2"
 ```
 
-## Register the store inside the main.js ##
-```js
-
-main.js
-
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store'
-
-Vue.config.productionTip = false
-
-new Vue({
-  store,
-  render: h => h(App),
-}).$mount('#app')
-```
-
 ## Create store using vstore vuetur tool ##
 ```js
 
@@ -89,14 +72,14 @@ export const store = new Vuex.Store({
 });
 ```
 
-## Register store inside main.js ##
+## Register the store inside the main.js ##
 ```js
 
 main.js
 
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store/store'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -128,6 +111,47 @@ export const store = new Vuex.Store({
 });
 ```
 
+# Final app.vue content #
+```js
+
+app.vue
+
+<template>
+  <div id="app">
+    <product-list-one v-bind:products="products"></product-list-one>
+    <product-list-two v-bind:products="products"></product-list-two>
+  </div>
+</template>
+
+<script>
+import ProductListOne from './components/ProductListOne.vue'
+import ProductListTwo from './components/ProductListTwo.vue'
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      
+    }
+  },
+  components: {
+    ProductListOne,
+    ProductListTwo
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
 
 
 
