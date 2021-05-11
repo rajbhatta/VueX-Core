@@ -4,7 +4,7 @@
 
 ```js
 
-ProductListOne.vue
+ProductListOne.vue is a vue component
 
 <template>
   <div id="product-list-one">
@@ -35,7 +35,7 @@ export default {
 
 ```js
 
-ProductListTwo.vue
+ProductListTwo.vue is a vue component
 
 <template>
   <div id="product-list-two">
@@ -60,5 +60,43 @@ export default {
 }
 </script>
 
+```
+
+```js
+
+store/store.js is a store
+
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export const store = new Vuex.Store({
+    state: {
+        products: [
+            {name:'Apple', qtn:30},
+            {name:'Ball', qtn:30},
+             {name:'Cat', qtn:30},
+             {name:'Dog', qtn:30}
+             ]
+    }
+});
+
+```
+
+```js
+
+main.js is registering store/store
+
+import Vue from 'vue'
+import App from './App.vue'
+import {store} from './store/store'
+
+Vue.config.productionTip = false
+
+new Vue({
+  store:store,
+  render: h => h(App),
+}).$mount('#app')
 ```
 
