@@ -1,7 +1,7 @@
 # 1. What is getters ? #
 - Sometimes we may need to compute derived state based on store state, for example filtering through a list of items and counting them:
 
-# 2. Source code containing problesm #
+# 2. Source code containing problems #
 - Let's say we want to reduce the quantity by half and reflct that across all the components.
 ```js
 
@@ -131,11 +131,12 @@ saleProduct(){
 
   # Solution using Getter #
   - To solve the above specified issue, we can store inside the store and use that throughout the program
+  
   ```js
 saleProduct(){
       var saleProducts=this.$store.state.products.map(product =>{
         return {
-          name: '**'+product.name+'***',
+          name: "****",
           qtn: product.qtn/2
         }
       })
