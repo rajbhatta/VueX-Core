@@ -1,10 +1,15 @@
-import Vue from 'vue'
-import App from './App.vue'
-import {store} from './store/store'
+import Vue from 'vue';
 
-Vue.config.productionTip = false
+import App from './App.vue';
+import router from './router';
+import store from './store';
 
+Vue.config.productionTip = false;
+
+// eslint-disable-next-line no-new
 new Vue({
-  store:store,
+  el: `#app`,
+  router,
+  store,
   render: h => h(App),
-}).$mount('#app')
+});
