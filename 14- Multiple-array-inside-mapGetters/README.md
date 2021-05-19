@@ -7,7 +7,7 @@ computed() {
 }
 ```
 
-# Example of using Object #
+# Example of using list of array #
 
 ```js
   
