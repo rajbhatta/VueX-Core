@@ -4,9 +4,9 @@
     
     <ul>
         <li> 
-          {{sportObject.id}}
-          {{sportObject.text}}
-          {{sportObject.done}}
+         <b>City</b> {{addressObj.city}}
+         <br/><b>Province</b> {{addressObj.province}}
+         <br/><b>Distrinct:</b> {{addressObj.district}}
           </li>
     </ul>
 
@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters({sportObject: 'getSportObjectFromGetterHelper'})
+    ...mapGetters({addressObj: 'getAddressFromGetterHelper'})
   }
 }
 </script>

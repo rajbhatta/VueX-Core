@@ -1,16 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {Address} from '../model/Address';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-    state: {
-      sportsObject:
-        { id: 1, text: 'This is my text', done: true }
+    state: {  
+      addressState:new Address('Test','Test','Test')
     },
     getters: {
-      getSportObjectFromGetterHelper: state => {
-        return state.sportsObject
+      getAddressFromGetterHelper: state => {
+        return state.addressState
       }
     }
   });

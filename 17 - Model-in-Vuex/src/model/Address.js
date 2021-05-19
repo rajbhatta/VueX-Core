@@ -1,11 +1,7 @@
 export class Address {
-  constructor({ street = ``, town = ``, zip = `` } = {}) {
-    this.street = street;
-    this.town = town;
-    this.zip = zip;
+  constructor(city, province,district) {
+    this.city = city;
+    this.province = province;
+    this.district=district;
   }
-}
-
-export function createAddress(data) {
-  return Object.freeze(new Address(data));
 }
