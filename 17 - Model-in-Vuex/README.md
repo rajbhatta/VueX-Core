@@ -1,102 +1,105 @@
-## What is Object in mapGetters? ##
-mapGetters can take an object or an array. So this snippet, which is shown.
+# Defining model in VueX for SOLID design pattern #
 
+## model/Address.js ##
 ```js
-computed() {
-    ...mapGetters({currentUser: 'currentUser'})
-}
-```
-
-# Details of mapGetters helper #
-```js
-/**
- * Reduce the code which written in Vue.js for getting the getters
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} getters
- * @return {Object}
- */
-export const mapGetters = normalizeNamespace((namespace, getters) => {
-  const res = {}
-  normalizeMap(getters).forEach(({ key, val }) => {
-    // The namespace has been mutated by normalizeNamespace
-    val = namespace + val
-    res[key] = function mappedGetter() {
-      if (
-        namespace &&
-        !getModuleByNamespace(this.$store, 'mapGetters', namespace)
-      ) {
-        return
-      }
-      if (
-        process.env.NODE_ENV !== 'production' &&
-        !(val in this.$store.getters)
-      ) {
-        console.error(`[vuex] unknown getter: ${val}`)
-        return
-      }
-      return this.$store.getters[val]
-    }
-    // mark vuex getter for devtools
-    res[key].vuex = true
-  })
-  return res
-})
-```
-
-# Example of using Object #
-
-```js
-  
-  store.js
-
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
-
-export const store = new Vuex.Store({
-    state: {
-      sportsObject:
-        { id: 1, text: 'This is my text', done: true }
-    },
-    getters: {
-      getSportObjectFromGetterHelper: state => {
-        return state.sportsObject
-      }
-    }
-  });
-  
-```
-
-```js
-
-ProductListOne.vue
-
-<template>
-  <div id="product-list-one">
-    <div><b>This is product list one</b></div>
-    
-    <ul>
-        <li> 
-          {{sportObject.id}}
-          {{sportObject.text}}
-          {{sportObject.done}}
-          </li>
-    </ul>
-
-  </div>
-</template>
-
-<script>
-import { mapGetters } from 'vuex'
-
-export default {
-  computed: {
-    ...mapGetters({sportObject: 'getSportObjectFromGetterHelper'})
+export class Address {
+  constructor({ street = ``, town = ``, zip = `` } = {}) {
+    this.street = street;
+    this.town = town;
+    this.zip = zip;
   }
 }
-</script>
+
+export function createAddress(data) {
+  return Object.freeze(new Address(data));
+}
+```
+
+## model/Contact.js ##
+```js
+export class Contact {
+  constructor({ email = ``, phone = `` } = {}) {
+    this.email = email;
+    this.phone = phone;
+  }
+}
+
+export function createContact(data) {
+  return Object.freeze(new Contact(data));
+}
 
 ```
 
-- Notes ...mapGetters name and getters name on the store must be same. Otherwise we won't be able to populate the data.
+## model/Customer.js ##
+```js
+import { createAddress } from './Address';
+import { createContact } from './Contact';
+import { createName } from './Name';
+
+export class Customer {
+  constructor({ address = null, contacts = [], name = null } = {}) {
+    this.address = address;
+    this.contacts = contacts;
+    this.name = name;
+  }
+}
+
+export function createCustomer(data) {
+  const address = createAddress(data.address);
+  const contacts = data.contacts.map(x => createContact(x));
+  const name = createName(data.name);
+
+  return Object.freeze(new Customer({ address, contacts, name }));
+}
+
+```
+
+## model/Name.js ##
+```js
+export class Name {
+  constructor({ firstName = ``, lastName = `` } = {}) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+}
+
+export function createName(data) {
+  return Object.freeze(new Name(data));
+}
+
+```
+
+## model/Request.js ##
+```js
+export class Request {
+  constructor(data = {}) {
+    this.data = data;
+  }
+}
+
+export function createRequest(data) {
+  return Object.freeze(new Request(data));
+}
+
+```
+
+## model/ShoppingAddress.js ##
+```js
+import { createAddress } from './Address';
+import { createContact } from './Contact';
+
+export class ShippingAddress {
+  constructor({ address = null, contact = null } = {}) {
+    this.address = address;
+    this.contact = contact;
+  }
+}
+
+export function createShippingAddress(data) {
+  const address = createAddress(data.address);
+  const contact = createContact(data.contact);
+
+  return Object.freeze(new ShippingAddress({ address, contact }));
+}
+
+```
