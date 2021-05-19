@@ -1,4 +1,4 @@
-## What is Object in mapGetters? ##
+## What is list of array in mapGetters? ##
 mapGetters can list of array inside the helper, which is shown.
 
 ```js
